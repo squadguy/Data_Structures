@@ -37,13 +37,83 @@ int main()
 	head -> next = NULL;
 //	printf("%d\n", head->dataValue);
 
+
+//seond node in linked list
+//allocate memory
 	head->next = malloc(sizeof(node_t));
+//ensure memory allocated
+	if (head->next == NULL)
+	{
+		return 1;
+	}
+
 	head->next->dataValue = 3;
 	head->next->next= NULL;
-	printf("%d\n", head->next->dataValue);
+//	printf("%d\n", head->next->dataValue);
+
+//third node in linked list
+	head->next->next = malloc(sizeof(node_t));
+
+	if (head->next->next == NULL)
+	{
+		return 1;
+	}
+
+	head->next->next->dataValue=6;
+	head->next->next->next=NULL;
+//	printf("%d\n", head->next->next->dataValue);
+
+//Prints a node, takes the linked lists head as arguement
+	void print_list (node_t * head)
+	{
+		node_t * current = head;
+
+		while (current != NULL)
+		{
+			printf("%d\n", current->dataValue);
+			current = current->next;
+
+		}
+		
+/**
+  *		printf("%d\n", current->dataValue);
+//		printf("%d\n", head->next->dataValue);
+//
+		current = current->next;
+		printf("%d\n", current->dataValue);
+
+		current = current->next;
+* 		printf("%d\n", current->dataValue);
+**/
+	}
+
+	void q_push (node_t * head, int val)
+	{
+		node_t * current = head;
+
+		while (current->next != NULL)
+		{
+			current = current->next;
+		}
+
+		current->next = malloc(sizeof(node_t));
+/*
+		if (current->next == NULL)
+		{
+			return 1;
+		}
+*/
+		current->next->dataValue = val;
+		current->next->next = NULL;
 
 
 	
+	
+	}
+
+	print_list(head);
+	q_push(head, 5);
+	print_list(head);
 
 	return 0;
 }
