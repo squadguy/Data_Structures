@@ -1,5 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
+#define TRUE 1
+#define FALSE 0
 
 typedef struct node 
 {
@@ -14,42 +16,83 @@ typedef struct queue
 	node *rear;
 } queue;
 
+void initialize(queue *q)
+{
+	q->count = 0;
+	q->front = NULL;
+	q->rear = NULL;
+}
+
+int isEmpty(queue *q)
+{
+	return(q->rear == NULL);
+}
+
+void enqueue (queue *q, int value)
+{
+	node *tmp;
+	tmp = malloc(sizeof(node));
+	
+	tmp->data=value;
+	tmp->next=NULL;
+	
+	if (!isEmpty(q))
+	{
+		q->rear->next = tmp;
+		q->rear = tmp;	
+	}
+	else
+	{
+		q->front = q->rear = tmp;
+	}
+	q->count++;
+
+}
 
 int main()
 {
-//Driver to test our Node Struct
-//make nodes for list and tmp node
-	node *list = NULL;
+//Init a queue
+	queue *q;
+	q = malloc(sizeof(queue));
+	
+//Init a tmp node
 	node *tmp = NULL;
-	tmp = malloc(sizeof(node));
-	list = malloc(sizeof(node));
-	tmp->data=NULL;
-	tmp->next=NULL;
+	tmp = malloc(sizeof(queue));
+	tmp->data = 15;
+	tmp->next = NULL;
 
-//create intial node 
-	list->data = 12;
-	list->next = NULL;
-	printf("%d\n", list->data);
+	printf("%d\n", tmp->data);
 
-//Change tmp value
-	tmp->data=8;
+//Simulate intial enqueue
+	q->front = q->rear = tmp->data;
+	q->count++;
+	printf("%d\n", q->count);
+	printf("%d\n", q->front);
+	printf("%d\n", q->rear);
+//Enqueue second node
+	tmp->data=33;
+	q->rear=malloc(sizeof(node));
+	q->rear->next=tmp;
+	q->rear=tmp;	
+	printf("%d\n", q->rear->data);
+	q->count++;
+	printf("%d\n", q->count);
 
-//create second node
-	list->next=malloc(sizeof(node));
-	list->next->data = tmp->data;
-	list->next->next = NULL;
-
-	printf("%d\n", list->next->data);
-
-//Update tmp value
+//Enqueue third Node	
 	tmp->data=55;
+	q->rear->next=tmp;
+	q->rear=tmp;	
+	printf("%d\n", q->rear->data);
+	q->count++;
+	printf("%d\n", q->count);
 
-//Create third node
-	list->next->next=malloc(sizeof(node));
-	list->next->next->data = tmp->data;
-	list->next->next->next = NULL;
+//Enqueue fourth Node	
+	tmp->data=100;
+	q->rear->next=tmp;
+	q->rear=tmp;	
+	printf("%d\n", q->rear->data);
+	q->count++;
+	printf("%d\n", q->count);
 
-	printf("%d\n", list->next->next->data);
-		
 	return 0;
 }
