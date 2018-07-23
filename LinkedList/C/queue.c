@@ -51,6 +51,18 @@ void enqueue (queue *q, int value)
 
 int main()
 {
+	queue *q;
+	q = malloc(sizeof(queue));
+	initialize(q);
+
+	enqueue(q,10);
+	enqueue(q,12);
+
+	printf("%d\n", q->rear->data);
+	printf("%d\n", q->count);
+
+
+	/*
 //Init a queue
 	queue *q;
 	q = malloc(sizeof(queue));
@@ -93,6 +105,7 @@ int main()
 	printf("%d\n", q->rear->data);
 	q->count++;
 	printf("%d\n", q->count);
+	*/
 
 	return 0;
 }
