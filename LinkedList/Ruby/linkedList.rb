@@ -8,20 +8,33 @@ class Node
 	end
 end
 
-#Test Driver to see if class Node is working
-#
-	linkedList = Node.new(1,nil)
-	tmpNode = Node.new(2,nil)
-	linkedList.next_node = tmpNode
-	tmpNode = Node.new(3,nil)
-	linkedList.next_node.next_node = tmpNode
-	tmpNode = Node.new(4,nil)
-	linkedList.next_node.next_node.next_node = tmpNode
-	tmpNode = Node.new(5,nil)
-	linkedList.next_node.next_node.next_node.next_node = tmpNode
-	puts linkedList.value.to_s
-	puts linkedList.next_node.value.to_s
-	puts linkedList.next_node.next_node.value.to_s
-	puts linkedList.next_node.next_node.next_node.value.to_s
-	puts linkedList.next_node.next_node.next_node.next_node.value.to_s
+class LinkedList
+	def initialize val
+		@head = Node.new(val,nil)
+	end
+	
+	def add(value)
+		current = @head
+		while current.next_node != nil
+			current = current.next_node
+		end
+		current.next_node = Node.new(value,nil)
+		self
+	end
 
+	def display
+		current = @head
+		full_list = []
+		while current != nil
+			puts current.value.to_s.to_s
+			current = current.next_node
+		end
+	end
+end
+
+
+
+ll = LinkedList.new(5)
+ll.add(7)
+ll.add(6)
+ll.display
