@@ -1,3 +1,16 @@
+/*
+ * To Do:
+ * Push Code
+ * Add Tail Node
+ * Create push_back function
+ * Test
+ * Push Code
+ * Create push/append function
+ * Test
+ * Push Code
+ *
+ */
+
 #include<stdio.h>
 #include<stdlib.h>
 
