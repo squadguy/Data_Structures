@@ -39,6 +39,16 @@ void add (linkedList *ll, int value)
 	current->next = tmp;
 }
 
+void insert_at_front(linkedList *ll, int value)
+{
+	node_t *tmp;
+	tmp=malloc(sizeof(node_t));
+	tmp->data=value;
+	tmp->next=ll->head;
+	ll->head=tmp;
+
+}
+
 void print(linkedList *ll)
 {
 	node_t * current;
@@ -46,7 +56,7 @@ void print(linkedList *ll)
 
 	while (current->next != NULL)
 	{
-		printf("%d\n", current->data);
+		printf("%d->", current->data);
 		current = current->next;
 	}
 		printf("%d\n", current->data);
@@ -62,7 +72,14 @@ int main()
 	add(ll,10);
 	add(ll,15);
 	add(ll,20);
-
 	print(ll);
+//Test inserting at front
+	insert_at_front(ll, 0);	
+	print(ll);
+	insert_at_front(ll, 25);	
+	print(ll);
+	add(ll,500);
+	print(ll);
+
 	return 0;
 }
