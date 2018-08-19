@@ -36,9 +36,9 @@ linkedlist * initialize(int data)
 	return ll;
 }
 
-void display_list(node* ll)
+void display_list(linkedlist* ll)
 {
-	node *current = ll;
+	node *current = ll->head;
 	while(current != NULL)
 	{
 		printf("%d\n", current->value);
@@ -75,34 +75,19 @@ int main()
 {
 
 	linkedlist *ll = initialize(15);
-
-	printf("%d\n", ll->head->value);
-
-/*
-	linkedlist *ll = NULL;
-
-	ll = malloc(sizeof(linkedlist));
-
-	ll->head = NULL;
-
-	ll->head = malloc(sizeof(node));
-
-	ll->head->value = 5;
-	ll->head->next = NULL;
-
-	printf("%d\n",ll->head->value);
-*/
-/*
-	node *ll = initialize(5);
 	
-	insert_end(ll, 100);
-	insert_end(ll, 101);
+	node* tmp = malloc(sizeof(node));	
+	tmp->value=20;
+	tmp->next=NULL;	
+
+	node* tmp2 = malloc(sizeof(node));	
+	tmp2->value=25;
+	tmp->next=NULL;	
+
+	ll->head->next = tmp;
+	ll->head->next->next = tmp2;
 
 	display_list(ll);
 
-	insert_front(&ll,1);
-
-	printf("%d\n", ll->value);
-*/	
 	return 0;
 }
