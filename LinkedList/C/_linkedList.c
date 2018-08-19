@@ -14,16 +14,26 @@ typedef struct Node {
 
 } node;
 
-node* initialize(int data)
-{
-	int _data = data;	
-	node *head = NULL;
+typedef struct LinkedList {
 
-	head = malloc(sizeof(node));	
-	head->value = _data;
-	head->next = NULL;
-	
-	return head;	
+	node *head;	
+
+} linkedlist;
+
+linkedlist * initialize(int data)
+{
+	int _data = data;
+	node *headNode = NULL;
+	linkedlist *ll = NULL;
+
+	headNode = malloc(sizeof(node));
+	headNode->value = _data;
+	headNode->next = NULL;
+
+	ll = malloc(sizeof(node));
+	ll->head = headNode;
+
+	return ll;
 }
 
 void display_list(node* ll)
@@ -64,6 +74,25 @@ void insert_front(node** ll, int data)
 int main()
 {
 
+	linkedlist *ll = initialize(15);
+
+	printf("%d\n", ll->head->value);
+
+/*
+	linkedlist *ll = NULL;
+
+	ll = malloc(sizeof(linkedlist));
+
+	ll->head = NULL;
+
+	ll->head = malloc(sizeof(node));
+
+	ll->head->value = 5;
+	ll->head->next = NULL;
+
+	printf("%d\n",ll->head->value);
+*/
+/*
 	node *ll = initialize(5);
 	
 	insert_end(ll, 100);
@@ -74,6 +103,6 @@ int main()
 	insert_front(&ll,1);
 
 	printf("%d\n", ll->value);
-	
+*/	
 	return 0;
 }
