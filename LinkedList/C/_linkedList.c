@@ -58,7 +58,7 @@ void insert_end(linkedlist* ll, int data)
 	
 }
 
-void insert_front(node** ll, int data)
+void insert_front(linkedlist* ll, int data)
 {
 	int _data = data;
 
@@ -66,8 +66,9 @@ void insert_front(node** ll, int data)
 	tmp_node->value = _data;
 	tmp_node->next = NULL;
 
-	tmp_node->next = (*ll);
-	(*ll) = tmp_node;
+	tmp_node->next = ll->head;
+
+	ll->head = tmp_node;
 
 }
 
@@ -78,6 +79,9 @@ int main()
 
 	insert_end(ll, 20);
 	insert_end(ll, 30);	
+	insert_front(ll,10);
+	insert_front(ll,5);
+	insert_end(ll, 35);	
 	display_list(ll);
 
 	return 0;
