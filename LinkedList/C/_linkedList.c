@@ -27,5 +27,10 @@ int main()
 
 	printf("%d\n", ll->value);
 
+	ll->next = malloc(sizeof(node));
+
+	ll->next->value = 10;
+	printf("%d\n", ll->next->value);
+
 	return 0;
 }
