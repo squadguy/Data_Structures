@@ -20,17 +20,29 @@ node* initialize(int data)
 	return head;	
 }
 
+void display_list(node* ll)
+{
+	node *current = ll;
+	while(current != NULL)
+	{
+		printf("%d\n", current->value);
+		current = current->next; 	
+	}
+}
+
 int main()
 {
 
 	node *ll = initialize(5);
 
-	printf("%d\n", ll->value);
-
 	ll->next = malloc(sizeof(node));
-
 	ll->next->value = 10;
-	printf("%d\n", ll->next->value);
+	ll->next->next = NULL;
+	ll->next->next = malloc(sizeof(node));
+	ll->next->next->value = 15;
+	ll->next->next->next = NULL;	
+
+	display_list(ll);
 
 	return 0;
 }
