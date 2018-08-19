@@ -1,6 +1,6 @@
 /*
  *
- * Next up: Create a linked list struct, and refactor functions to interact with it.
+ * Next up: refactor functions to interact with it.
  *
  */
 
@@ -46,9 +46,9 @@ void display_list(linkedlist* ll)
 	}
 }
 
-void insert_end(node* ll, int data)
+void insert_end(linkedlist* ll, int data)
 {
-	node *current = ll;
+	node *current = ll->head;
 	int _data = data;
 	while(current->next !=NULL)
 		current = current->next;
@@ -75,18 +75,9 @@ int main()
 {
 
 	linkedlist *ll = initialize(15);
-	
-	node* tmp = malloc(sizeof(node));	
-	tmp->value=20;
-	tmp->next=NULL;	
 
-	node* tmp2 = malloc(sizeof(node));	
-	tmp2->value=25;
-	tmp->next=NULL;	
-
-	ll->head->next = tmp;
-	ll->head->next->next = tmp2;
-
+	insert_end(ll, 20);
+	insert_end(ll, 30);	
 	display_list(ll);
 
 	return 0;
