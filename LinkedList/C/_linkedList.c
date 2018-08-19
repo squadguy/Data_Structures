@@ -1,3 +1,9 @@
+/*
+ *
+ * Next up: Write insert_end();
+ *
+ */
+
 #include<stdio.h>
 #include<stdlib.h>
 
