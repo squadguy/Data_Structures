@@ -1,6 +1,6 @@
 /*
  *
- * Next up: refactor functions to interact with it.
+ * To Do: insert_At() | pop() | pop_back() | remove_at() | fork for doubly linked list.
  *
  */
 
