@@ -1,6 +1,6 @@
 /*
  *
- * Next up: Write insert_front();
+ * Next up: Create a linked list struct, and refactor functions to interact with it.
  *
  */
 
@@ -48,6 +48,19 @@ void insert_end(node* ll, int data)
 	
 }
 
+void insert_front(node** ll, int data)
+{
+	int _data = data;
+
+	node *tmp_node = malloc(sizeof(node));	
+	tmp_node->value = _data;
+	tmp_node->next = NULL;
+
+	tmp_node->next = (*ll);
+	(*ll) = tmp_node;
+
+}
+
 int main()
 {
 
@@ -57,6 +70,10 @@ int main()
 	insert_end(ll, 101);
 
 	display_list(ll);
+
+	insert_front(&ll,1);
+
+	printf("%d\n", ll->value);
 	
 	return 0;
 }
