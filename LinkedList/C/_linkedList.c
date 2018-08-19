@@ -1,6 +1,6 @@
 /*
  *
- * Next up: Write insert_end();
+ * Next up: Write insert_front();
  *
  */
 
@@ -36,19 +36,27 @@ void display_list(node* ll)
 	}
 }
 
+void insert_end(node* ll, int data)
+{
+	node *current = ll;
+	int _data = data;
+	while(current->next !=NULL)
+		current = current->next;
+	current->next = malloc(sizeof(node));
+	current->next->value = _data;
+	current->next->next = NULL;
+	
+}
+
 int main()
 {
 
 	node *ll = initialize(5);
-
-	ll->next = malloc(sizeof(node));
-	ll->next->value = 10;
-	ll->next->next = NULL;
-	ll->next->next = malloc(sizeof(node));
-	ll->next->next->value = 15;
-	ll->next->next->next = NULL;	
+	
+	insert_end(ll, 100);
+	insert_end(ll, 101);
 
 	display_list(ll);
-
+	
 	return 0;
 }
