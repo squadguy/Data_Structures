@@ -17,6 +17,7 @@ typedef struct Node {
 typedef struct LinkedList {
 
 	node *head;	
+	int length;
 
 } linkedlist;
 
@@ -32,6 +33,7 @@ linkedlist * initialize(int data)
 
 	ll = malloc(sizeof(node));
 	ll->head = headNode;
+	ll->length = 1;
 
 	return ll;
 }
@@ -56,6 +58,7 @@ void insert_end(linkedlist* ll, int data)
 	current->next->value = _data;
 	current->next->next = NULL;
 	
+	ll->length++;	
 }
 
 void insert_front(linkedlist* ll, int data)
@@ -69,6 +72,7 @@ void insert_front(linkedlist* ll, int data)
 	tmp_node->next = ll->head;
 
 	ll->head = tmp_node;
+	ll->length++;
 
 }
 
@@ -76,13 +80,13 @@ int main()
 {
 
 	linkedlist *ll = initialize(15);
-
 	insert_end(ll, 20);
 	insert_end(ll, 30);	
 	insert_front(ll,10);
 	insert_front(ll,5);
 	insert_end(ll, 35);	
 	display_list(ll);
+	printf("%d\n", ll->length);
 
 	return 0;
 }
