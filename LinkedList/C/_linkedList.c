@@ -76,6 +76,48 @@ void insert_front(linkedlist* ll, int data)
 
 }
 
+void insert_at(linkedlist* ll, int index, int data)
+{
+	int _index = index;
+	int _data = data;
+	int i = 1;       //iterator for while loop
+
+	node * tmp = malloc(sizeof(node));
+	tmp->next = NULL;
+	tmp->value=_data;
+
+	node * current = malloc(sizeof(node));
+	current=ll->head;
+
+//Verify the requested index is in range
+
+	if( (_index + 1) > (ll->length))
+	{
+		printf("Out of range\n");
+		return;
+	}
+
+//To insert at index 0	
+	if(_index == 0)
+	{
+		insert_front(ll,_data);
+		return;
+	}
+
+//For everything else	
+	while(i < _index)
+	{
+		current = current->next;	
+		i++;
+	}	
+
+//Rearrange pointers to perform insert operation	
+	tmp->next = current->next;
+	current->next = tmp;
+	
+	ll->length++;
+
+}
 int main()
 {
 
@@ -85,8 +127,14 @@ int main()
 	insert_front(ll,10);
 	insert_front(ll,5);
 	insert_end(ll, 35);	
+	insert_end(ll, 100);	
+//	insert_front(ll, 1);
+	insert_end(ll, 110);
+	insert_at(ll,0,1);
+	insert_front(ll, 456);
 	display_list(ll);
 	printf("%d\n", ll->length);
+	
 
 	return 0;
 }
