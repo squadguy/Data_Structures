@@ -1,6 +1,6 @@
 /*
  *
- * To Do: insert_At() | pop() | pop_back() | remove_at() | fork for doubly linked list.
+ * To Do:  pop() | pop_back() | remove_at() | fork for doubly linked list.
  *
  */
 
