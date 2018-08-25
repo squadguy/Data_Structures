@@ -17,7 +17,8 @@ let linkedList = {
 		this.head = tmp;
 	},
 
-	append : function(val){
+//add to front of list
+	prepend : function(val){
 		let tmp =  new Node();
 		tmp.next = null;
 		tmp.value = val;
@@ -30,7 +31,8 @@ let linkedList = {
 
 		current.next = tmp;
 	},
-	
+
+//print the list	
 	display : function() {
 		let current = this.head;
 
@@ -40,6 +42,7 @@ let linkedList = {
 		}
 	},
 
+//removes and return the first node
 	pop : function(){
 		let tmp = new Node();
 		tmp.value = null;
@@ -50,6 +53,10 @@ let linkedList = {
 		this.head = this.head.next;
 
 		return tmp;
+	},
+
+	pushback : function(){
+		
 	}
 }
 
@@ -57,8 +64,8 @@ let linkedList = {
 let ll = Object.create(linkedList);
 
 ll.init(5);
-ll.append(10)
-ll.append(15)
+ll.prepend(10)
+ll.prepend(15)
 
 ll.display();
 console.log("###################");
@@ -67,7 +74,7 @@ ll.display();
 ll.pop()
 console.log("###################");
 ll.display();
-ll.append(50000);
+ll.prepend(50000);
 console.log("###################");
 ll.display();
 ll.pop();
