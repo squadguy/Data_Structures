@@ -6,6 +6,7 @@ function Node()
 }
 
 let linkedList = {
+
 	head : null,
 
 	init: function(val){
@@ -37,8 +38,19 @@ let linkedList = {
 			console.log(current.value);
 			current = current.next;
 		}
+	},
+
+	pop : function(){
+		let tmp = new Node();
+		tmp.value = null;
+		tmp.next = null;
+
+		tmp = this.head;
+
+		this.head = this.head.next;
+
+		return tmp;
 	}
-	
 }
 
 
@@ -49,3 +61,16 @@ ll.append(10)
 ll.append(15)
 
 ll.display();
+console.log("###################");
+ll.pop();
+ll.display();
+ll.pop()
+console.log("###################");
+ll.display();
+ll.append(50000);
+console.log("###################");
+ll.display();
+ll.pop();
+console.log("###################");
+ll.display();
+
