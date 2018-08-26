@@ -84,13 +84,36 @@ let linkedList = {
 			this.pushback(num);
 		}
 
+	},
+
+	getMiddle: function()
+	{
+		if (this.head == null){
+			return this;
+		}
+		let fastptr = this.head.nextNode;
+		let slowptr = this.head;
+		
+		while (fastptr != null)
+		{
+			fastptr = fastptr.nextNode;
+			if(fastptr != null)
+			{
+				slowptr = slowptr.nextNode;
+				fastptr = fastptr.nextNode;
+			}
+		}
+
+		return slowptr;
 	}
 }
 
 
 let ll = Object.create(linkedList);
 
-ll.init(15);
-ll.initRandPB(50, 100);
+ll.init(1000);
+ll.initRandPB(2, 100);
 ll.display();
-console.log(ll.length);
+let someVar = ll.getMiddle();
+
+console.log(someVar.value);
