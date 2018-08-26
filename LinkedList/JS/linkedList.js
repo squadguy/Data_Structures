@@ -70,14 +70,27 @@ let linkedList = {
 			current = current.nextNode;
 		}
 		current.nextNode = tmp; 
+		
+		this.length++;
+	},
+
+//build random linked list w/ pushback
+//TO DO:  Init the list with a random variable rather than having to init it first and then run this method
+	initRandPB : function(numOfItems, numLimit)
+	{
+		for (var i = 0; i < numOfItems; i++)
+		{
+			let num = Math.floor(Math.random() * numLimit);
+			this.pushback(num);
+		}
+
 	}
 }
 
 
 let ll = Object.create(linkedList);
 
-console.log(ll.length);
 ll.init(15);
-ll.display;
+ll.initRandPB(50, 100);
+ll.display();
 console.log(ll.length);
-
