@@ -12,7 +12,7 @@ let linkedList = {
 	init: function(val){
 		var tmp = new Node();
 		tmp.value = val;
-		tmp.next = null;
+		tmp.nextNode = null;
 
 		this.head = tmp;
 	},
@@ -20,25 +20,25 @@ let linkedList = {
 //add to front of list
 	prepend : function(val){
 		let tmp =  new Node();
-		tmp.next = null;
+		tmp.nextNode = null;
 		tmp.value = val;
 
 		let current = this.head;
 
-		while (current.next != null){
-			current = current.next;
+		while (current.nextNode != null){
+			current = current.nextNode;
 		}
 
-		current.next = tmp;
+		current.nextNode = tmp;
 	},
 
 //print the list	
 	display : function() {
 		let current = this.head;
 
-		while( current != null){
+		while(current != null){
 			console.log(current.value);
-			current = current.next;
+			current = current.nextNode;
 		}
 	},
 
@@ -46,17 +46,26 @@ let linkedList = {
 	pop : function(){
 		let tmp = new Node();
 		tmp.value = null;
-		tmp.next = null;
+		tmp.nextNode = null;
 
 		tmp = this.head;
 
-		this.head = this.head.next;
+		this.head = this.head.nextNode;
 
 		return tmp;
 	},
 
-	pushback : function(){
-		
+	pushback : function(value){
+		let tmp = new Node();
+		tmp.nextNode = null;
+		tmp.value = value;
+
+		let current = this.head;
+
+		while(current.nextNode != null){
+			current = current.nextNode;
+		}
+		current.nextNode = tmp; 
 	}
 }
 
@@ -64,20 +73,8 @@ let linkedList = {
 let ll = Object.create(linkedList);
 
 ll.init(5);
-ll.prepend(10)
-ll.prepend(15)
+ll.prepend(10);
+ll.prepend(15);
+ll.pushback(2000);
 
 ll.display();
-console.log("###################");
-ll.pop();
-ll.display();
-ll.pop()
-console.log("###################");
-ll.display();
-ll.prepend(50000);
-console.log("###################");
-ll.display();
-ll.pop();
-console.log("###################");
-ll.display();
-
