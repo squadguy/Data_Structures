@@ -8,6 +8,7 @@ function Node()
 let linkedList = {
 
 	head : null,
+	length: 0,
 
 	init: function(val){
 		var tmp = new Node();
@@ -15,6 +16,8 @@ let linkedList = {
 		tmp.nextNode = null;
 
 		this.head = tmp;
+
+		this.length++;
 	},
 
 //add to front of list
@@ -55,6 +58,7 @@ let linkedList = {
 		return tmp;
 	},
 
+//append to list
 	pushback : function(value){
 		let tmp = new Node();
 		tmp.nextNode = null;
@@ -72,9 +76,8 @@ let linkedList = {
 
 let ll = Object.create(linkedList);
 
-ll.init(5);
-ll.prepend(10);
-ll.prepend(15);
-ll.pushback(2000);
+console.log(ll.length);
+ll.init(15);
+ll.display;
+console.log(ll.length);
 
-ll.display();
