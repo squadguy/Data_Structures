@@ -19,23 +19,8 @@ let linkedList = {
 
 		this.length++;
 	},
-/*
-//add to front of list
-	prepend : function(val){
-		let tmp =  new Node();
-		tmp.nextNode = null;
-		tmp.value = val;
 
-		let current = this.head;
-
-		while (current.nextNode != null){
-			current = current.nextNode;
-		}
-
-		current.nextNode = tmp;
-	},
-*/
-
+//Add node to front of list
 	enqueue : function(val){
 		let tmp = new Node();
 		tmp.value = val;
