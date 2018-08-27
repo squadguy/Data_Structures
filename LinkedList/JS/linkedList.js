@@ -19,7 +19,7 @@ let linkedList = {
 
 		this.length++;
 	},
-
+/*
 //add to front of list
 	prepend : function(val){
 		let tmp =  new Node();
@@ -34,6 +34,15 @@ let linkedList = {
 
 		current.nextNode = tmp;
 	},
+*/
+
+	enqueue : function(val){
+		let tmp = new Node();
+		tmp.value = val;
+		tmp.nextNode = this.head;
+	
+		this.head = tmp;
+	},
 
 //print the list	
 	display : function() {
@@ -46,7 +55,7 @@ let linkedList = {
 	},
 
 //removes and return the first node
-	pop : function(){
+	dequeue : function(){
 		let tmp = new Node();
 		tmp.value = null;
 		tmp.nextNode = null;
@@ -59,7 +68,7 @@ let linkedList = {
 	},
 
 //append to list
-	pushback : function(value){
+	push : function(value){
 		let tmp = new Node();
 		tmp.nextNode = null;
 		tmp.value = value;
@@ -74,14 +83,14 @@ let linkedList = {
 		this.length++;
 	},
 
-//build random linked list w/ pushback
+//build random linked list w/ push
 //TO DO:  Init the list with a random variable rather than having to init it first and then run this method
 	initRandPB : function(numOfItems, numLimit)
 	{
 		for (var i = 0; i < numOfItems; i++)
 		{
 			let num = Math.floor(Math.random() * numLimit);
-			this.pushback(num);
+			this.push(num);
 		}
 
 	},
@@ -112,8 +121,6 @@ let linkedList = {
 let ll = Object.create(linkedList);
 
 ll.init(1000);
-ll.initRandPB(2, 100);
+ll.enqueue(5);
+ll.push(15);
 ll.display();
-let someVar = ll.getMiddle();
-
-console.log(someVar.value);
