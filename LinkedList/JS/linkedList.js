@@ -58,12 +58,17 @@ let linkedList = {
 		tmp.nextNode = null;
 		tmp.value = value;
 
-		let current = this.head;
-
-		while(current.nextNode != null){
-			current = current.nextNode;
+		if (this.head == null){
+			this.head = tmp;
 		}
+		else{	
+			let current = this.head;
+
+			while(current.nextNode != null){
+				current = current.nextNode;
+			}
 		current.nextNode = tmp; 
+		}
 		
 		this.length++;
 	},
@@ -76,8 +81,16 @@ let linkedList = {
 		{
 			let num = Math.floor(Math.random() * numLimit);
 			this.push(num);
+			console.log(num);
 		}
 
+	},
+
+	initIncreaseList : function (numOfItems){
+		for (var i = 0; i < numOfItems; i++){
+			this.push(i);
+			//console.log(i);
+		}
 	},
 
 	getMiddle: function()
@@ -104,8 +117,5 @@ let linkedList = {
 
 
 let ll = Object.create(linkedList);
-
-ll.init(1000);
-ll.enqueue(5);
-ll.push(15);
+ll.initIncreaseList(10);
 ll.display();
