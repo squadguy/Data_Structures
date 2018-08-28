@@ -8,6 +8,7 @@ function Node()
 let linkedList = {
 
 	head : null,
+	tail : null,
 	length: 0,
 
 	init: function(val){
@@ -89,10 +90,10 @@ let linkedList = {
 	initIncreaseList : function (numOfItems){
 		for (var i = 0; i < numOfItems; i++){
 			this.push(i);
-			//console.log(i);
 		}
 	},
 
+//Return the middle node
 	getMiddle: function()
 	{
 		if (this.head == null){
@@ -112,10 +113,42 @@ let linkedList = {
 		}
 
 		return slowptr;
+	},
+
+//Split the list in half and return the second half
+	splitMiddle : function(){
+		if(this.head == null){
+			return this;
+		}
+		let fastptr = this.head.nextNode;
+		let slowptr = this.head;
+		let halfList = new Node();
+		halfList.value = null;
+		halfList.nextNode=null;
+
+		while (fastptr != null)
+		{
+			fastptr = fastptr.nextNode;
+			if(fastptr != null)
+			{
+				slowptr = slowptr.nextNode;
+				fastptr = fastptr.nextNode;
+			}
+		}
+			halfList = slowptr.nextNode;
+			slowptr.nextNode = null;
+	
+		return halfList;
 	}
 }
 
 
 let ll = Object.create(linkedList);
+let bs = Object.create(linkedList);
 ll.initIncreaseList(10);
+//ll.display();
+
+bs.head = ll.splitMiddle();
+
+bs.display();
 ll.display();
