@@ -8,21 +8,23 @@ typedef struct node
 	int value;
 } node;
 
-node* initTree(int);
+node* createNode(int);
+void insertLeft(node*, int);
 
 int main()
 {
 
 
 	node *root = malloc(sizeof(node));
-
-	root = initTree(8);	
+	root = createNode(8);	
+	insertLeft(root, 4);
 
 	printf("%d\n", root->value);
+	printf("%d\n", root->left->value);
 	return 0;
 }
 
-node* initTree (int data)
+node* createNode (int data)
 {
 	node *tmpNode = malloc(sizeof(node));
 
@@ -31,4 +33,12 @@ node* initTree (int data)
 	tmpNode->value = data;
 
 	return tmpNode;
+}
+
+void insertLeft (node* root, int data)
+{
+	node* tmpNode = malloc(sizeof(node));
+	tmpNode = createNode(4);
+
+	root->left = tmpNode;
 }
