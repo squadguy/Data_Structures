@@ -115,6 +115,24 @@ let linkedList = {
 		return slowptr;
 	},
 
+/*
+ * ONLY WORKS FOR EVEN LINKEDLISTS
+	getMiddle : function(){
+		let fast = this.head;
+		let slow = this.head;
+
+		while(fast.nextNode.nextNode != null)
+		{
+			fast = fast.nextNode.nextNode;
+			slow = slow.nextNode;
+		}
+
+		return slow;
+
+
+	},
+*/
+
 //Split the list in half and return the second half
 	splitMiddle : function(){
 		if(this.head == null){
@@ -139,16 +157,66 @@ let linkedList = {
 			slowptr.nextNode = null;
 	
 		return halfList;
+	},
+
+	shuffleList : function()
+	{
+		if (this.head == null){
+			return this;
+		}
+		let fastptr = this.head.nextNode;
+		let slowptr = this.head;
+		
+		while (fastptr != null)
+		{
+			fastptr = fastptr.nextNode;
+			if(fastptr != null)
+			{
+				slowptr = slowptr.nextNode;
+				fastptr = fastptr.nextNode;
+			}
+		}
+
+		let first = this.head;
+		let second = slowptr.nextNode;
+		let next = null;
+//1
+		next = first.nextNode;
+		first.nextNode = second;
+		first = next;
+//2		
+		next = second.nextNode;
+		second.nextNode = first;
+		second = next;
+//3
+		next = first.nextNode;
+		first.nextNode = second;
+		first = next;
+//4
+		next = second.nextNode;
+		second.nextNode = first;
+		second = next;
+//5
+		next = first.nextNode;
+		first.nextNode = second;
+		first = next;
+//6
+
 	}
+
 }
 
 
 let ll = Object.create(linkedList);
 let bs = Object.create(linkedList);
-ll.initIncreaseList(10);
+ll.initIncreaseList(6);
 //ll.display();
 
-bs.head = ll.splitMiddle();
+ll.shuffleList();
+console.log(ll.head.value);
+console.log(ll.head.nextNode.value);
+console.log(ll.head.nextNode.nextNode.value);
+console.log(ll.head.nextNode.nextNode.nextNode.value);
+console.log(ll.head.nextNode.nextNode.nextNode.nextNode.value);
+console.log(ll.head.nextNode.nextNode.nextNode.nextNode.nextNode.value);
 
-bs.display();
-ll.display();
