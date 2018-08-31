@@ -19,10 +19,12 @@ int main()
 	root = createNode(8);	
 	insertLeft(root, 4);
 	insertRight(root, 9);
+	insertLeft(root->left, 2);
 
 	printf("%d\n", root->value);
 	printf("%d\n", root->left->value);
 	printf("%d\n", root->right->value);
+	printf("%d\n", root->left->left->value);
 
 	return 0;
 }
@@ -41,7 +43,10 @@ node* createNode (int data)
 void insertLeft (node* root, int data)
 {
 	node* tmpNode = malloc(sizeof(node));
-	tmpNode = createNode(4);
+	tmpNode = createNode(data);
+
+	tmpNode->left = NULL;
+	tmpNode->right = NULL;
 
 	root->left = tmpNode;
 }
@@ -49,7 +54,9 @@ void insertLeft (node* root, int data)
 void insertRight (node* root, int data)
 {
 	node* tmpNode = malloc(sizeof(node));
-	tmpNode = createNode(10);
+	tmpNode = createNode(data);
 
+	tmpNode->left = NULL;
+	tmpNode ->right = NULL;
 	root->right = tmpNode;
 }
