@@ -10,7 +10,7 @@ typedef struct node
 
 node* createNode(int);
 void insertLeft(node*, int);
-
+void insertRight(node*, int);
 int main()
 {
 
@@ -18,9 +18,12 @@ int main()
 	node *root = malloc(sizeof(node));
 	root = createNode(8);	
 	insertLeft(root, 4);
+	insertRight(root, 9);
 
 	printf("%d\n", root->value);
 	printf("%d\n", root->left->value);
+	printf("%d\n", root->right->value);
+
 	return 0;
 }
 
@@ -41,4 +44,12 @@ void insertLeft (node* root, int data)
 	tmpNode = createNode(4);
 
 	root->left = tmpNode;
+}
+
+void insertRight (node* root, int data)
+{
+	node* tmpNode = malloc(sizeof(node));
+	tmpNode = createNode(10);
+
+	root->right = tmpNode;
 }
