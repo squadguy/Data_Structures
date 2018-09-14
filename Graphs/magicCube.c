@@ -34,6 +34,8 @@ int main(){
 		
 	int midVal = findMiddleVal(&sideSize);
 
+	printf("%d\n", midVal);
+
 	
 //Init the magic square (need to make a function)
 	for (int i = 0; i < sideSize; ++i)
@@ -51,8 +53,10 @@ int main(){
 //Find the value which will go in the middle of the matrix
 	int findMiddleVal(int* sideSize)
 	{
-
-		int midVal = *sideSize/2;
+		//ceil takes a double and returns a double
+		//cast the int* to doubles, square them/divide by two and ceil it
+		//Type cast that val to an int and return it
+		int midVal = (int) ceil((double)((*sideSize * *sideSize))/2);
 
 		return midVal;
 	}	
