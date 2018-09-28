@@ -1,109 +1,92 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct node
-{
-	struct node* left;
-	struct node* right;
-	int value;
-} node;
+typedef struct Node {
 
-node* createNode(int);
-void insertLeft(node*, int);
-void insertRight(node*, int);
-void addNode (node* root, int data);
+	int val;
+	struct Node* left;
+	struct Node* right;
+
+} Node;
+
+typedef struct Tree {
+
+	Node* root;
+
+} Tree;
+
+Tree* initTree();
+Node* createNode(int);
+void addKey(Tree*, int);
+
 int main()
 {
+	Tree *tree = initTree();
 
+	addKey(tree, 3);
+	addKey(tree, 4);
 
-	node *root = malloc(sizeof(node));
-	root = createNode(8);	
-	/*
-	insertLeft(root, 4);
-	insertRight(root, 9);
-	insertLeft(root->left, 2);
-	*/
-
-	addNode(root,10);
-	addNode(root,7);
-	addNode(root,5);
-	addNode(root,12);
-
-
-	printf("%d\n", root->value);
-	printf("%d\n", root->right->value);
-	printf("%d\n", root->left->value);
-	printf("%d\n", root->left->left->value);
-	printf("%d\n", root->right->right->value);
-
-//	printf("%d\n", root->right->value);
-//	printf("%d\n", root->left->left->value);
+	printf("%d\n",tree->root->val);
+	printf("%d\n",tree->root->right->val);
 
 	return 0;
 }
 
-node* createNode (int data)
+Node* createNode(int data)
 {
-	node *tmpNode = malloc(sizeof(node));
+	Node* node = malloc(sizeof(*node));
 
-	tmpNode->left = NULL;
-	tmpNode->right = NULL;
-	tmpNode->value = data;
+	node->left = NULL;
+	node->right = NULL;
+	node->val = data;
 
-	return tmpNode;
+	return node;
 }
 
-void insertLeft (node* root, int data)
+void addKey(Tree* tree, int data)
 {
-	node* tmpNode = malloc(sizeof(node));
-	tmpNode = createNode(data);
+	Node* current = tree->root;
+	int sent = 0;
 
-	tmpNode->left = NULL;
-	tmpNode->right = NULL;
-
-	root->left = tmpNode;
-}
-
-void insertRight (node* root, int data)
-{
-	node* tmpNode = malloc(sizeof(node));
-	tmpNode = createNode(data);
-
-	tmpNode->left = NULL;
-	tmpNode ->right = NULL;
-	root->right = tmpNode;
-}
-
-void addNode (node* root, int data)
-{
-	node* currentNode = root;
-	int bs = 0;
-	int* ptrBS = &bs;
-	if (currentNode == NULL){
-		root = malloc(sizeof(node));
-		root->left = NULL;
-		root->right = NULL;
-		root->value = data;
+	if (current == NULL)
+	{
+		tree->root = createNode(data);
 	} else {
-	while (*ptrBS == 0)
-		if(currentNode->value >= data)
+		while(sent == 0)
 		{
-			if(currentNode->left == NULL)
+			if (current->val >= data)
 			{
-				insertLeft(currentNode, data);
-				*ptrBS=1;
-			} else{
-			       	currentNode = currentNode->left;
+				if (current->left == NULL)
+				{
+					current->left = createNode(data);
+					sent = 1;
+				}
+				else
+				{
+					current = current->left;
+				}
 			}
-		} else {
-			if(currentNode->right == NULL)
+			else
 			{
-				insertRight(currentNode, data);
-				*ptrBS=1;
-			}else{
-				currentNode = currentNode->right;
+				if (current->right == NULL)
+				{
+					current->right = createNode(data);
+					sent = 1;
+				}
+				else
+				{
+					current = current->right;
+				}
 			}
 		}
 	}
-	
+}
+
+
+Tree* initTree()
+{
+	Tree *tree = malloc(sizeof(*tree));
+	tree->root = NULL;
+
+	return tree;
 }
