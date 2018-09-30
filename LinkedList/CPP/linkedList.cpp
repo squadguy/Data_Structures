@@ -6,6 +6,7 @@ int main()
 	struct Node
 	{
 		struct Node* next;
+		struct Node* prev;
 		int val;
 
 	};
@@ -15,8 +16,8 @@ int main()
 		public:
 			List()
 			{
-				head = NULL;
 				tail = NULL;
+				head = tail;
 			}
 			~List()
 			{	
@@ -31,8 +32,10 @@ int main()
 			{
 				Node* tmp = new Node;
 				tmp->val = data;
+				tmp->next = NULL;
+				tmp->prev = NULL;
 
-				if(head == NULL)
+				if(tail == NULL)
 				{
 					head = tmp;
 					tail = tmp;	
@@ -40,6 +43,7 @@ int main()
 				else
 				{
 					tail->next = tmp;
+					tmp->prev = tail;
 					tail = tmp;
 				}
 			}
@@ -54,11 +58,44 @@ int main()
 				}
 			}
 
+			void reversePrintList()
+			{
+				Node* current = tail;
+				while( current != NULL)
+				{
+					std::cout << current->val << std::endl;
+					current = current->prev;
+				}
+			}
+
+			void reverseList()
+			{
+				Node* current = tail;
+				Node* prevNode = NULL;
+
+				while ( current->prev != NULL )
+				{
+					prevNode = current->next;
+					current->next = current->prev;
+					current->prev = prevNode;
+					current = current->next;
+				}
+
+				current->next = current->prev;
+				current->prev = prevNode->next;
+
+				/* Reverse tail && head ptrs */
+
+				head = tail;
+				tail = current;
+
+			}
+
 			int dequeue()
 			{
 				int value = head->val;
 				Node* current = head;
-				std::cout << head->val << std::endl;
+			//	std::cout << head->val << std::endl;
 				head = head->next;
 
 				delete current; 
@@ -76,6 +113,13 @@ int main()
 	ll->createNode(5);
 	ll->createNode(10);
 	ll->createNode(15);
+
+	ll->printList();
+	ll->reverseList();
+	ll->printList();
+	ll->reverseList();
+	ll->printList();
+
 
 	delete ll;
 
