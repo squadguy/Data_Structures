@@ -80,6 +80,20 @@ void List::enqueue(int data)
 
 }
 
+void List::enqueueNode(Node* newNode)
+{
+	if ( tail == nullptr)
+	{
+		head = newNode;
+		tail = newNode;
+	}
+	else
+	{
+		newNode->next = head;
+		head = newNode;
+	}
+}
+
 void List::reverse()
 {
 	Node* current = head;
@@ -114,15 +128,13 @@ Node* List::getHead()
 	return head;
 }
 
-/*
 void List::orderedInsert(Node* headRef, Node* newNode)
 {
 	Node* current;
 
 	if( headRef == nullptr || headRef->val >= newNode->val)
 	{
-		newNode->next = headRef->next;
-		head = newNode;
+		enqueueNode(newNode);
 	}
 	else
 	{
@@ -138,4 +150,3 @@ void List::orderedInsert(Node* headRef, Node* newNode)
 		
 	}
 }
-*/

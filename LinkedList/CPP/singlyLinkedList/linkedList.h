@@ -14,8 +14,9 @@ class List
 		void printList();
 		int dequeue();
 		void enqueue(int);
+		void enqueueNode(Node*);
 		void reverse();
-	//	void orderedInsert(Node*, Node*);
+		void orderedInsert(Node*, Node*);
 		Node* getHead();
 		
 
