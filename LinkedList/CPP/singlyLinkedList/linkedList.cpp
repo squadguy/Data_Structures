@@ -45,6 +45,8 @@ void List::printList()
 
 		current = current->next;
 	}
+
+
 }
 
 int List::dequeue()
@@ -56,6 +58,25 @@ int List::dequeue()
 	delete current;
 
 	return nodeVal;
+
+}
+
+void List::enqueue(int data)
+{
+	Node* tmp = new Node;
+	tmp->val = data;
+	tmp->next = nullptr;
+
+	if ( tail == nullptr)
+	{
+		head = tmp;
+		tail = tmp;
+	}
+	else
+	{
+		tmp->next = head;
+		head = tmp;
+	}
 
 }
 
@@ -94,20 +115,27 @@ Node* List::getHead()
 }
 
 /*
-void List::sortedInsert(Node* head, Node* newNode)
+void List::orderedInsert(Node* headRef, Node* newNode)
 {
-	Node* current = nullptr;
+	Node* current;
 
-	if (head == nullptr || head->val >= newNode->val)
+	if( headRef == nullptr || headRef->val >= newNode->val)
+	{
+		newNode->next = headRef->next;
+		head = newNode;
+	}
+	else
+	{
+		current = head;
+
+		while (current->next != nullptr && current->next->val <= newNode->val)
+		{
+			current = current->next;
+		}
+			newNode->next = current->next;
+			current->next = newNode;
+			
 		
-	
-}
-*/
-
-
-/*
-void List:;insertSort()
-{
-	Node* sortedHead = nullptr;
+	}
 }
 */

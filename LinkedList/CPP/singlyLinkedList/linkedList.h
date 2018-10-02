@@ -13,8 +13,9 @@ class List
 		void appendNode(int);
 		void printList();
 		int dequeue();
+		void enqueue(int);
 		void reverse();
-	//	void sortedInsert(Node*, Node*);
+	//	void orderedInsert(Node*, Node*);
 		Node* getHead();
 		
 
