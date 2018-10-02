@@ -100,8 +100,9 @@ void List::reverse()
 	Node* nextNode = nullptr;
 	Node* nextNextNode = nullptr;
 
-	if (current == tail)
+	if (tail == nullptr)
 	{
+		std::cout << "HI" << std::endl;
 		return;
 	}
 
