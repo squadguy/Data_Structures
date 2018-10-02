@@ -75,7 +75,10 @@ void List::reverse()
 
 	while( nextNextNode != nullptr)
 	{
-
+		nextNode->next = current;
+		current = nextNode;
+		nextNode = nextNextNode;
+		nextNextNode = nextNode->next;
 	}	
 
 	nextNode->next = current;
