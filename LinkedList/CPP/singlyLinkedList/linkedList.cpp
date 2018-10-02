@@ -88,3 +88,26 @@ void List::reverse()
 
 }
 
+Node* List::getHead()
+{
+	return head;
+}
+
+/*
+void List::sortedInsert(Node* head, Node* newNode)
+{
+	Node* current = nullptr;
+
+	if (head == nullptr || head->val >= newNode->val)
+		
+	
+}
+*/
+
+
+/*
+void List:;insertSort()
+{
+	Node* sortedHead = nullptr;
+}
+*/
