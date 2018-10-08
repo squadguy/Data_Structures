@@ -72,6 +72,22 @@ class linkedList{
 		}
 	}
 
+	public function enqueue($node)
+	{
+		$tmp = new node($node);
+
+		if ( $this->getHead() == NULL )
+		{
+			$this->setHead($tmp);
+			$this->setTail($tmp);
+		}
+		else
+		{
+			$tmp->setNext($this->getHead());
+			$this->setHead($tmp);
+		}
+	}
+
 	public function printList()
 	{
 		$current = $this->getHead();
@@ -94,9 +110,16 @@ class linkedList{
 
 $ll = new linkedList();
 
-$ll->push(5);
-$ll->push(10);
-$ll->push("COOL");
+$ll->push(112);
+$ll->enqueue(5);
+$ll->enqueue(7);
+$ll->enqueue(9);
+$ll->push(11);
+$ll->printList();
+$ll->push(12);
+$ll->enqueue(3);
+$ll->enqueue(9);
+
 $ll->printList();
 
 ?>
