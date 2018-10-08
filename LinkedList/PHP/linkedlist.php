@@ -88,15 +88,37 @@ class linkedList{
 		}
 	}
 
+	public function dequeue()
+	{
+		$head = $this->getHead();
+		
+		$this->setHead($head->getNext());	
+
+		return $head;
+	}
+
 	public function printList()
 	{
 		$current = $this->getHead();
+
+		if ( $current == NULL )
+		{
+			echo "EMPTY LIST\n";
+		}
 
 		while ( $current != NULL )
 		{
 			$current->printVal();
 
 			$current = $current->getNext();
+		}
+	}
+
+	public function destroy()
+	{
+		while ( $this->getHead() != NULL )
+		{
+			$this->dequeue();
 		}
 	}
 
@@ -119,6 +141,14 @@ $ll->printList();
 $ll->push(12);
 $ll->enqueue(3);
 $ll->enqueue(9);
+$ll->printList();
+
+$ll->dequeue();
+$ll->dequeue();
+
+$ll->printList();
+
+$ll->destroy();
 
 $ll->printList();
 
