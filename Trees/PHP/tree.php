@@ -11,6 +11,11 @@
 			return $this->val;
 		}
 
+		public function printKey()
+		{
+			echo $this->val . "\n";
+		}
+
 		private $val;
 
 	}
@@ -44,6 +49,19 @@
 			return $this->head;
 		}
 
+		public function isEmpty()
+		{
+			$emptyList = false;
+
+			if ( $this->getHead() == NULL )
+			{
+				$emptyList = true;
+			}
+
+			return $emptyList;
+		}
+
+
 		private $head;
 
 	}	
@@ -68,17 +86,21 @@
 
 		public function pop()
 		{
+			if( $this->isEmpty())
+			{
+				return;
+			}
 			$tmpNode = $this->getHead();
 
 			$this->setHead($tmpNode->getNextNode());
 
-			return $tmpNode;
+			return $tmpNode->getKey();
 
 		}
 
 		public function peek()
 		{
-			echo $this->getHead()->getKey();
+			echo $this->getHead()->getKey()->getKey() . "\n";
 		}
 	}
 
@@ -145,7 +167,8 @@
 	}
 
 
-	abstract class Tree {
+	abstract class Tree 
+	{
 
 		public function __construct()
 		{
@@ -212,81 +235,96 @@
 
 		public function inOrderTraversal()
 		{
+			$nodeStack = new Stack();
+
 			$current = $this->getRoot();
-			$holdNode = NULL;
 
-			while( $this->getLeftTreeOf($current) != NULL )
+			if ( $current == NULL )
 			{
-				$current = $this->getLeftTreeOf($current);
+				return;
 			}
-			echo $current->getKey();
+			while (true)
+			{
+				if ( $current != NULL )
+				{
+					$nodeStack->push($current);
+					$current = $this->getLeftTreeOf($current);
+				}
+				else
+				{
+					if ( $nodeStack->isEmpty() )
+					{
+						break;	
+					}
+					$current = $nodeStack->pop();
+					$current->printKey();
 
-			$current = $this->getParentOf($current);
-			$holdNode = $current;
+					$current = $this->getRightTreeOf($current);
+				}
+			}
 		}
 
 
 
 		//Consider making this abstract and impement it sub classes
+	
 		public function insert($val)
 		{
-			$tmpNode = new BinaryNode($val);
-			$current = $this->getRoot();
-			$traverse = true;
+			$newNode = new BinaryNode($val);
+			$root = $this->getRoot();
 
-			if ( $current == NULL )
+			$traverse=true;
+
+			if ( $root == NULL )
 			{
-				$this->setRoot($tmpNode);		
-			}	
+				$this->setRoot($newNode);
+			}
 			else
 			{
-				while ( $traverse )
+				while($traverse)
 				{
-					if ( $current->getKey() > $tmpNode->getKey() )
+					if ($newNode->getKey() < $root->getKey())
 					{
-						if ( $this->checkIfLeaf($current) )
+						if ( $this->getLeftTreeOf($root) == NULL )
 						{
-							$this->insertLeftSubTree($current, $tmpNode);
+							$this->insertLeftSubTree($root, $newNode);
 
 							$traverse = false;
-						}
-						else 
+						}	
+						else
 						{
-							$current = $this->getLeftTreeOf($current);;
+							$root = $this->getLeftTreeOf($root);
 						}
 					}
 					else
 					{
-						if ( $this->checkIfLeaf($current) )
+						if ( $this->getRightTreeOf($root) == NULL )
 						{
-							$this->insertRightSubTree($current, $tmpNode);	
+							$this->insertRightSubTree($root, $newNode);
 
 							$traverse = false;
-						}
+						}	
 						else
 						{
-							$current = $this->getRightTreeOf($current);
+							$root = $this->getRightTreeOf($root);
 						}
 					}
-
 				}
 			}
 		}
 	}
 
 	$BST = new BST();
-	$BST->insert(5);
+
 	$BST->insert(7);
 	$BST->insert(4);
+	$BST->insert(12);
+	$BST->insert(2);
+	$BST->insert(3);
+	$BST->insert(8);
+	$BST->insert(15);
 
-
-	/*
-	echo $BST->getRoot()->getKey();
-	echo $BST->getRoot()->getRightChild()->getParentNode()->getKey();
-	echo $BST->getRoot()->getLeftChild()->getParentNode()->getKey();
-	 */
-
-//	$BST->inOrderTraversal();
+	$BST->inOrderTraversal();
 
 
 ?>
