@@ -15,6 +15,73 @@
 
 	}
 
+	class ListNode extends Node {
+
+		public function setNextNode($node)
+		{
+			$this->nextNode = $node;	
+		}		
+
+		public function getNextNode() 
+		{
+			return $this->nextNode;
+		}
+
+		private $nextNode = NULL;
+	}
+
+
+
+	abstract class LinkedList
+	{
+		protected function setHead($node)
+		{
+			$this->head = $node;		
+		}
+
+		protected function getHead()
+		{
+			return $this->head;
+		}
+
+		private $head;
+
+	}	
+
+	class Stack extends LinkedList
+	{
+		public function push($val)
+		{
+			$tmpNode = new ListNode($val);
+
+			if ( $this->getHead() == NULL )
+			{
+				$this->setHead($tmpNode);	
+			}
+			else
+			{
+				$tmpNode->setNextNode($this->getHead());
+
+				$this->setHead($tmpNode);
+			}
+		}
+
+		public function pop()
+		{
+			$tmpNode = $this->getHead();
+
+			$this->setHead($tmpNode->getNextNode());
+
+			return $tmpNode;
+
+		}
+
+		public function peek()
+		{
+			echo $this->getHead()->getKey();
+		}
+	}
+
 	class BinaryNode extends Node {
 
 		public function setLeftChild($node)
@@ -135,6 +202,11 @@
 			return $current->getLeftChild();
 		}
 
+		protected function getParentOf($current)
+		{
+			return $current->getParentNode();
+		}
+
 		//TRAVERSALS
 		//
 
@@ -148,6 +220,9 @@
 				$current = $this->getLeftTreeOf($current);
 			}
 			echo $current->getKey();
+
+			$current = $this->getParentOf($current);
+			$holdNode = $current;
 		}
 
 
@@ -204,13 +279,14 @@
 	$BST->insert(7);
 	$BST->insert(4);
 
+
 	/*
 	echo $BST->getRoot()->getKey();
 	echo $BST->getRoot()->getRightChild()->getParentNode()->getKey();
 	echo $BST->getRoot()->getLeftChild()->getParentNode()->getKey();
 	 */
 
-	$BST->inOrderTraversal();
+//	$BST->inOrderTraversal();
 
 
 ?>
